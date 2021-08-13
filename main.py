@@ -34,16 +34,18 @@ def set_up():
 
 
 def format_pull_request_details(pr: str) -> str:
-    return f"Título do PR: {pr.title}\nNúmero do PR:{pr.number}\n\n"
+    return f"Título do PR: {pr.title}\nNúmero do PR: {pr.number}\n\n"
 
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.send_message(message.chat.id, f'Ola {message.from_user.first_name}')
+    print(message)
+    bot.send_message(message.chat.id, f'Olá {message.from_user.first_name}')
 
 
 @bot.message_handler(commands=['list_pulls'])
 def list_pull_requests(message):
+    print(message)
     bot.send_chat_action(message.chat.id, 'typing')
 
     if message.from_user.id != int(config["TELEGRAM_USER_ID"]):
@@ -62,6 +64,7 @@ def list_pull_requests(message):
 
 @bot.message_handler(commands=['merge'])
 def merge_pull_request(message):
+    print(message)
     bot.send_chat_action(message.chat.id, 'typing')
 
     if message.from_user.id != int(config["TELEGRAM_USER_ID"]):
@@ -90,7 +93,7 @@ def merge_pull_request(message):
 
 @bot.message_handler(func=lambda m: True)
 def ping(message):
-
+    print(message)
     # Only reply to me
     if message.from_user.id != int(config["TELEGRAM_USER_ID"]):
         bot.send_message(message.chat.id, '🚨 Glu glu yeah yeah 🚨')
