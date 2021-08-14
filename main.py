@@ -112,9 +112,13 @@ def getMessage():
 
 @server.get("/")
 def webhook():
-    bot.remove_webhook()
-    bot.set_webhook(url=config["HEROKU_URL"])
-    return "!", 200
+    if env != "dev":
+        bot.remove_webhook()
+        bot.set_webhook(url=config["HEROKU_URL"])
+        return "!", 200
+    else:
+        bot.polling()
+        return "yes"
 
 
 if __name__ == "__main__":
