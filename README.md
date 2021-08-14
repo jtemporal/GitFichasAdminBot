@@ -72,3 +72,5 @@ GITHUB_REPO       -> The repo on GitHub
 HEROKU_URL        -> The app URL from the "Domains" section on settings
 ENV               -> Environment, set it to something like `prod` or `production`
 ```
+
+Now after deploying you **NEED** to access the home page once on your browser. This habilitate the webserver to start replying.
